@@ -1,0 +1,21 @@
+{
+  "name": "rogue-tracker-conv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/splkm97/rogue-tracker-conv.git"
+  },
+  "private": true,
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.6",
+    "ts-node": "^10.9.2"
+  }
+}

@@ -1,7 +1,7 @@
 import {Biome} from "../enums/biome";
 import {Species} from "../enums/species";
 import {TimeOfDay} from "../enums/time-of-day";
-import {get} from "lodash";
+import {forEach, get} from "lodash";
 
 export enum BiomePoolTier {
     COMMON,
@@ -39,17 +39,18 @@ export function getBiomePokemonPoolList(
     const curPokemonPools = get(get(get(biomePokemonPools, biome), poolTier), timeOfDay);
     const result: Species[] = [];
 
-    for (let pokemon of curPokemonPools) {
-        if (pokemon in Species) {
-            result.push(pokemon);
-        } else {
-            for (let specie of pokemon) {
-                if (specie in Species) {
-                    result.push(specie)
-                }
-            }
+    forEach(curPokemonPools, (pokemon) => {
+        if (get(pokemon, '1') === undefined) {
+            result.push(pokemon as Species);
+        }else {
+            forEach(pokemon as SpeciesTree, (species) => {
+                species.forEach((item) => {
+                    result.push(item);
+                });
+            });
         }
-    }
+    });
+
     return result;
 }
 
